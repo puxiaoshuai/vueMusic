@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Nav from '@/components/BottomBar.vue'
-// import Home from '@/views/home/Home.vue'
+import Home from '@/views/home/Home.vue'
 import User from '@/views/user/User.vue'
 import Detail from '@/views/home/NewsDetail.vue'
 import Login from '@/views/login/LoginView.vue'
 import PageNotFound from '@/components/PageNotFound.vue'
-import MusicDetail from '@/views/music_detail/Player.vue'
+// import MusicDetail from '@/views/music_detail/Player.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,7 +20,7 @@ const routes = [
       {
         path: '/home',
         name: 'Home',
-        component: MusicDetail
+        component: Home
 
       },
       {
