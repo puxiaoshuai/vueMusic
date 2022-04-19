@@ -1,7 +1,22 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import { Button, NavBar, Image as VanImage, Tab, Tabs, Search, Icon, Tabbar, TabbarItem, Progress } from 'vant'
+import {
+  Button,
+  NavBar,
+  Image as VanImage,
+  Tab,
+  Tabs,
+  Search,
+  Icon,
+  Tabbar,
+  TabbarItem,
+  Progress,
+  Swipe,
+  SwipeItem,
+  Lazyload,
+  Loading
+} from 'vant'
 import 'vant/lib/index.less'
 import 'tailwindcss/tailwind.css'
 import './index.css'
@@ -12,7 +27,20 @@ console.info(`%c
 作者：蒲小帅
 歌曲来源于网易云音乐(https://music.163.com)
 * 本项目仅供个人学习研究使用，禁止用于商业或非法用途。`, 'color:#2980b9')
-Vue.use(Button).use(NavBar).use(VanImage).use(Tab).use(Tabs).use(Search).use(Icon).use(TabbarItem).use(Tabbar).use(Progress)
+Vue.use(Button)
+  .use(NavBar)
+  .use(VanImage)
+  .use(Tab)
+  .use(Tabs)
+  .use(Search)
+  .use(Icon)
+  .use(TabbarItem)
+  .use(Tabbar)
+  .use(Progress)
+  .use(SwipeItem)
+  .use(Swipe)
+  .use(Lazyload)
+  .use(Loading)
 Vue.use(store)
 new Vue({
   router,

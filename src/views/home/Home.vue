@@ -1,7 +1,7 @@
 <template lang="">
   <div class="home-wrapper relative">
     <HeaderSearch />
-    <van-image round class="w-full h-40 rounded-md px-3 pt-2 mt-14" src="http://p1.music.126.net/DiITrtFcvv2fe898Vq9Jtg==/109951167306154905.jpg"></van-image>
+    <Banners/>
     <van-tabs v-model="active" sticky offset-top="54px">
       <van-tab title="发现音乐">
         <div class="recommended-wrapper">
@@ -10,7 +10,15 @@
             <span class="recommended-showmore text-xs mr-6 border-2 px-2 py-1 rounded-xl">更多</span>
           </div>
           <div class="grid grid-cols-3">
-            <RecommendedItem class="justify-self-center mt-4" v-for="(song, index) in recommendedList" :key="index"></RecommendedItem>
+            <RecommendedItem
+              :picUrl="song.picUrl"
+              :id="song.id"
+              :playCount="song.playCount"
+              :name="song.name"
+              class="justify-self-center mt-4"
+              v-for="(song, index) in recommendedList"
+              :key="index"
+            ></RecommendedItem>
           </div>
         </div>
       </van-tab>
@@ -23,25 +31,36 @@
 import { NavBar } from 'vant'
 import HeaderSearch from './components/HeaderSearch.vue'
 import RecommendedItem from './components/RecommendedItem.vue'
-
+import Banners from './components/Banners.vue'
+import { request } from '@/utils/request.js'
+import { getRecommends } from '@/utils/api.js'
 export default {
   name: 'Home',
   components: {
     [NavBar.name]: NavBar,
     HeaderSearch,
-    RecommendedItem
+    RecommendedItem,
+    Banners
   },
   data() {
     return {
       active: 0,
-      recommendedList: [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]
+      recommendedList: [],
+      banners: [{ playCount: 100, id: 1, name: 'xx', pic: 'https://p2.music.126.net/a4RUDBj-LDKN7WMClV65OQ==/109951164735432462.jpg' }]
     }
   },
-  mounted() {},
   methods: {
     add() {
       this.$store.commit('add')
     }
+  },
+  mounted() {
+    request({
+      url: getRecommends
+    }).then(res => {
+      console.log('res', res.result)
+      this.recommendedList = res.result
+    })
   }
 }
 </script>
