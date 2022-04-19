@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    number: 0
+    number: 0,
+    isShowPopup: false
   },
   mutations: {
     add(state) {
@@ -13,6 +14,12 @@ export default new Vuex.Store({
     },
     reduce(state) {
       state.number -= 1
+    },
+    handleShowPopup(state) {
+      state.isShowPopup = true
+    },
+    handleDissPopup(state) {
+      state.isShowPopup = false
     }
   },
   actions: {

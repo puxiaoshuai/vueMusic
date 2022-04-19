@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-progress class="w-screen" stroke-width="2" :percentage="100" show-pivot="false" pivot-text="" />
+    <van-progress class="w-screen" stroke-width="2" :percentage="100" pivot-text="" />
     <div class="h-14 w-full flex bg-white items-center">
       <div class="imageHeader h-12 w-12 border-4 rounded-full border-gray-800 bg-red-400 ml-4">
         <van-image round src="http://p2.music.126.net/0z2bW4d5mPNPEj_mERfl3A==/109951164671397652.jpg" />
@@ -14,13 +14,25 @@
         <van-icon name="play-circle-o" size="30" />
         <!-- <van-icon name="stop-circle-o" /> -->
       </div>
-      <van-icon class="ml-5 text-gray-500" name="setting-o" size="28" />
+      <van-icon @click="showPopup" class="ml-5 text-gray-500" name="setting-o" size="28" />
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'BottomPlayer'
+  name: 'BottomPlayer',
+  components: {},
+  data() {
+    return {
+      showModal: false
+    }
+  },
+  methods: {
+    showPopup() {
+      console.log('dianj')
+      this.$store.commit('handleShowPopup')
+    }
+  }
 }
 </script>
 <style lang="less"></style>

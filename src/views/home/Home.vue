@@ -1,30 +1,24 @@
 <template lang="">
   <div class="home-wrapper relative">
     <HeaderSearch />
-    <Banners/>
-    <van-tabs v-model="active" sticky offset-top="54px">
-      <van-tab title="发现音乐">
-        <div class="recommended-wrapper">
-          <div class="recommended-header flex mt-2">
-            <div class="flex-1 ml-6 text-lg">推荐歌单</div>
-            <span class="recommended-showmore text-xs mr-6 border-2 px-2 py-1 rounded-xl">更多</span>
-          </div>
-          <div class="grid grid-cols-3">
-            <RecommendedItem
-              :picUrl="song.picUrl"
-              :id="song.id"
-              :playCount="song.playCount"
-              :name="song.name"
-              class="justify-self-center mt-4"
-              v-for="(song, index) in recommendedList"
-              :key="index"
-            ></RecommendedItem>
-          </div>
-        </div>
-      </van-tab>
-      <van-tab title="推荐歌单">内容 2</van-tab>
-      <van-tab title="上新">内容 3</van-tab>
-    </van-tabs>
+    <Banners />
+    <div class="recommended-wrapper">
+      <div class="recommended-header flex mt-4">
+        <div class="flex-1 ml-6 text-lg">推荐歌单</div>
+        <span class="recommended-showmore text-xs mr-6 border-2 px-2 py-1 rounded-xl">更多</span>
+      </div>
+      <div class="grid grid-cols-3">
+        <RecommendedItem
+          :picUrl="song.picUrl"
+          :id="song.id"
+          :playCount="song.playCount"
+          :name="song.name"
+          class="justify-self-center mt-4"
+          v-for="(song, index) in recommendedList"
+          :key="index"
+        ></RecommendedItem>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -34,6 +28,7 @@ import RecommendedItem from './components/RecommendedItem.vue'
 import Banners from './components/Banners.vue'
 import { request } from '@/utils/request.js'
 import { getRecommends } from '@/utils/api.js'
+
 export default {
   name: 'Home',
   components: {

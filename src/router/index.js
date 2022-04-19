@@ -5,6 +5,7 @@ import Home from '@/views/home/Home.vue'
 import User from '@/views/user/User.vue'
 import Detail from '@/views/home/NewsDetail.vue'
 import Login from '@/views/login/LoginView.vue'
+import SongList from '@/views/music_detail/SongList.vue'
 import PageNotFound from '@/components/PageNotFound.vue'
 // import MusicDetail from '@/views/music_detail/Player.vue'
 Vue.use(VueRouter)
@@ -43,8 +44,9 @@ const routes = [
     component: Detail
   },
   {
-    path: '/login',
-    component: Login
+    path: '/songList/:id',
+    name: 'Recommended',
+    component: SongList
   },
   {
     path: '/login',

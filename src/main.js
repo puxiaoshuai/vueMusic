@@ -15,7 +15,11 @@ import {
   Swipe,
   SwipeItem,
   Lazyload,
-  Loading
+  Loading,
+  Popup,
+  List,
+  Cell,
+  CellGroup
 } from 'vant'
 import 'vant/lib/index.less'
 import 'tailwindcss/tailwind.css'
@@ -41,6 +45,10 @@ Vue.use(Button)
   .use(Swipe)
   .use(Lazyload)
   .use(Loading)
+  .use(Popup)
+  .use(List)
+  .use(Cell)
+  .use(CellGroup)
 Vue.use(store)
 new Vue({
   router,

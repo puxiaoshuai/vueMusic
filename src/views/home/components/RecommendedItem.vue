@@ -1,6 +1,6 @@
 <!-- 推荐歌单 -->
 <template>
-  <div class="w-24 relative">
+  <div @click="jumpToSongList(id)" class="w-24 relative">
     <van-image :src="picUrl" />
     <div>
       <TextView :text="name" />
@@ -34,6 +34,11 @@ export default {
     playCount: {
       type: Number,
       required: true
+    }
+  },
+  methods: {
+    jumpToSongList: function(id) {
+      this.$router.push(`/songList/${id}`)
     }
   },
   filters: {

@@ -10,14 +10,17 @@
       <van-tabbar-item icon="home-o" to="/home">首页</van-tabbar-item>
       <van-tabbar-item icon="user-o" to="/user">我的</van-tabbar-item>
     </van-tabbar>
+    <ListPopup></ListPopup>
   </div>
 </template>
 <script>
 import BottomPlayer from '@/views/home/components/BottomPlayer.vue'
+import ListPopup from '@/views/home/components/ListPopup.vue'
 export default {
   name: 'bottomTabbar',
   components: {
-    BottomPlayer
+    BottomPlayer,
+    ListPopup
   },
   data() {
     return {
