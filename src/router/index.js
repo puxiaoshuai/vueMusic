@@ -20,13 +20,19 @@ const routes = [
       {
         path: '/home',
         name: 'Home',
-        component: Home
+        component: Home,
+        meta: {
+          keepAlive: true
+        }
 
       },
       {
         path: '/user',
         name: 'User',
-        component: User
+        component: User,
+        meta: {
+          keepAlive: true
+        }
 
       }
     ]

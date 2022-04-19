@@ -1,20 +1,23 @@
 <template>
-  <div>
-    <router-view></router-view>
-    <van-tabbar route>
+  <div class="relative">
+    <div class="container">
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </div>
+    <BottomPlayer class="bottomPlayer fixed bottom-0 left-0" />
+    <van-tabbar class="z-10" route>
       <van-tabbar-item icon="home-o" to="/home">首页</van-tabbar-item>
       <van-tabbar-item icon="user-o" to="/user">我的</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
 <script>
-import { Tabbar, TabbarItem, Button } from 'vant'
+import BottomPlayer from '@/views/home/components/BottomPlayer.vue'
 export default {
   name: 'bottomTabbar',
   components: {
-    [Button.name]: Button,
-    [TabbarItem.name]: TabbarItem,
-    [Tabbar.name]: Tabbar
+    BottomPlayer
   },
   data() {
     return {
@@ -23,4 +26,8 @@ export default {
   }
 }
 </script>
-<style lang=""></style>
+<style lang="less">
+.container {
+  margin-bottom: 106px;
+}
+</style>
