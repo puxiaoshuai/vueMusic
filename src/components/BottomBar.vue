@@ -2,13 +2,14 @@
   <div class="relative">
     <div class="container">
       <keep-alive>
-        <router-view></router-view>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
       </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
     </div>
-    <BottomPlayer class="bottomPlayer fixed bottom-0 left-0" />
-    <van-tabbar class="z-10" route>
-      <van-tabbar-item icon="home-o" to="/home">首页</van-tabbar-item>
-      <van-tabbar-item icon="user-o" to="/user">我的</van-tabbar-item>
+    <BottomPlayer class="bottomPlayer fixed bottom-0 left-0 w-full" />
+    <van-tabbar class="z-10" route safe-area-inset-bottom>
+      <van-tabbar-item key="home" icon="home-o" to="/home">首页</van-tabbar-item>
+      <van-tabbar-item key="user" icon="user-o" to="/user">我的</van-tabbar-item>
     </van-tabbar>
     <ListPopup></ListPopup>
   </div>
@@ -26,7 +27,8 @@ export default {
     return {
       message: ''
     }
-  }
+  },
+  mounted() {}
 }
 </script>
 <style lang="less">

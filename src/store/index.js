@@ -1,27 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import mutations from './mutation'
 
 Vue.use(Vuex)
-
 export default new Vuex.Store({
   state: {
-    number: 0,
-    isShowPopup: false
+    isShowPopup: false,
+    globalMusicUrl: '',
+    globalMusicInfo: {},
+    globalCurrentTime: 0,
+    isMusicPaused: true,
+    musicQueue: [], // 歌曲队列包含歌曲信息等
+    nowIndex: 0,
+    deleteToNext: false
   },
-  mutations: {
-    add(state) {
-      state.number += 1
-    },
-    reduce(state) {
-      state.number -= 1
-    },
-    handleShowPopup(state) {
-      state.isShowPopup = true
-    },
-    handleDissPopup(state) {
-      state.isShowPopup = false
-    }
-  },
+  mutations,
   actions: {
   },
   modules: {

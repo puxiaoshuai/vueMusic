@@ -19,7 +19,9 @@ import {
   Popup,
   List,
   Cell,
-  CellGroup
+  CellGroup,
+  Tag,
+  Toast
 } from 'vant'
 import 'vant/lib/index.less'
 import 'tailwindcss/tailwind.css'
@@ -49,6 +51,8 @@ Vue.use(Button)
   .use(List)
   .use(Cell)
   .use(CellGroup)
+  .use(Tag)
+  .use(Toast)
 Vue.use(store)
 new Vue({
   router,

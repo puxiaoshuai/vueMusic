@@ -41,20 +41,15 @@ export default {
     return {
       active: 0,
       recommendedList: [],
-      banners: [{ playCount: 100, id: 1, name: 'xx', pic: 'https://p2.music.126.net/a4RUDBj-LDKN7WMClV65OQ==/109951164735432462.jpg' }]
+      banners: []
     }
   },
-  methods: {
-    add() {
-      this.$store.commit('add')
-    }
-  },
+  methods: {},
   mounted() {
     request({
       url: getRecommends
     }).then(res => {
-      console.log('res', res.result)
-      this.recommendedList = res.result
+      // this.recommendedList = res.result
     })
   }
 }

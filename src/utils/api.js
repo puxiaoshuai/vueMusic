@@ -9,4 +9,8 @@
 export const mp3Url = '/song/url?id=33894312'
 export const getLrc = '/lyric?id=33894312'
 export const getBanners = '/banner?type=2'
-export const getRecommends = '/personalized?limit=12'
+export const getRecommends = '/personalized?limit='
+// https://wy-musciapi.vercel.app/playlist/detail?id=4878926215 歌单详情
+export const getRecommendedDetail = '/playlist/detail?id='
+// https://wy-musciapi.vercel.app/song/detail?ids=1841408508 //歌单下的歌曲详情，参数 1,2,3，歌曲id从 歌单的trankid拿
+export const getSongListOfRecommendations = '/song/detail?ids='
