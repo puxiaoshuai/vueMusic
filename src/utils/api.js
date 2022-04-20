@@ -14,3 +14,4 @@ export const getRecommends = '/personalized?limit='
 export const getRecommendedDetail = '/playlist/detail?id='
 // https://wy-musciapi.vercel.app/song/detail?ids=1841408508 //歌单下的歌曲详情，参数 1,2,3，歌曲id从 歌单的trankid拿
 export const getSongListOfRecommendations = '/song/detail?ids='
+export const getMp3Url = '/song/url?id='

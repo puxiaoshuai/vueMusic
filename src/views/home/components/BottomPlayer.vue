@@ -22,8 +22,8 @@
         <span class="text-gray-500 text-xs">蔡琴</span>
       </div>
       <div class="progress-wrapper w-10 h-10 flex justify-center items-center ml-20">
-        <van-icon name="play-circle-o" size="30" />
-        <!-- <van-icon name="stop-circle-o" /> -->
+        <van-icon v-if="isPause" name="play-circle-o" size="30" />
+        <van-icon v-else name="stop-circle-o" size="30" />
       </div>
       <van-icon @click="showPopup" class="ml-5 mr-5 text-gray-500" name="setting-o" size="28" />
     </div>
@@ -53,6 +53,9 @@ export default {
       if (!this.isDrag) {
         this.currentTime = e.target.currentTime
       }
+    },
+    onEnded() {
+      console.log('结束啦')
     }
   },
   computed: {
@@ -67,6 +70,9 @@ export default {
     },
     nowIndex() {
       return this.$store.state.nowIndex
+    },
+    isPause() {
+      return this.$store.state.isMusicPaused
     }
   }
 }

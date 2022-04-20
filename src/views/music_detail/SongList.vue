@@ -4,8 +4,8 @@
     <div class="header-wrapper">
       <van-nav-bar fixed title="爱你一万年" left-text="返回" left-arrow @click-left="onClickLeft" />
       <div class="h-48 relative header-content">
-        <van-image style="filter: blur(4px)" class="h-full w-full" src="https://p2.music.126.net/a4RUDBj-LDKN7WMClV65OQ==/109951164735432462.jpg"></van-image>
-        <van-image round class="h-24 w-24 absolute left-3 top-8" src="https://p2.music.126.net/a4RUDBj-LDKN7WMClV65OQ==/109951164735432462.jpg"></van-image>
+        <van-image style="filter: blur(4px)" class="h-full w-full" :src="songInfo.picUrl"></van-image>
+        <van-image round class="h-24 w-24 absolute left-3 top-8" :src="songInfo.picUrl"></van-image>
         <div class="rightContent absolute left-32 right-4 top-4">
           <p class="text-white">{{ songInfo.name }}</p>
           <p v-html="songInfo.description" class="text-xs mt-4 text-white line-clamp-4"></p>
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="songlist">
-      <van-list v-model="loading" :finished="finished"  finished-text="--底线(๑¯㉨¯๑)--">
+      <van-list v-model="loading" :finished="finished" finished-text="--底线(๑¯㉨¯๑)--">
         <SongItem :name="item.name" :id="item.id" :picUrl="item.picUrl" :author="item.author" :mv="item.mv" :dt="item.dt" :key="item.id" v-for="item in songList"></SongItem>
       </van-list>
     </div>
@@ -33,14 +33,15 @@ export default {
     return {
       list: [],
       loading: false,
-      finished: true,
+      finished: false,
       html: '学校',
       songInfo: {
         id: '',
         name: '',
         trackIds: [],
         description: '',
-        tags: []
+        tags: [],
+        picUrl: ''
       },
       loadingContent: null,
       songList: []
@@ -55,21 +56,7 @@ export default {
     this.loadRecommendedDetails()
   },
   methods: {
-    onLoad() {
-      setTimeout(() => {
-        for (let i = 0; i < 10; i++) {
-          this.list.push(this.list.length + 1)
-        }
-
-        // 加载状态结束
-        this.loading = false
-
-        // 数据全部加载完成
-        if (this.list.length >= 40) {
-          this.finished = true
-        }
-      }, 1000)
-    },
+    onLoad() {},
     onClickLeft() {
       this.$router.push('/home')
     },
@@ -78,7 +65,8 @@ export default {
         url: getRecommendedDetail + this.$route.params.id
       }).then(res => {
         const data = res.playlist
-        this.songInfo = { id: data.id, name: data.name, trackIds: data.trackIds, tags: data.tags, description: data.description }
+        console.log('xx', data)
+        this.songInfo = { id: data.id, name: data.name, trackIds: data.trackIds, tags: data.tags, description: data.description, picUrl: data.coverImgUrl }
       })
 
       await request({
@@ -99,6 +87,8 @@ export default {
         })
         .finally(() => {
           this.loadingContent.clear()
+          this.loading = false
+          this.finished = true
         })
     }
   }

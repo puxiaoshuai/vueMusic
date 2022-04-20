@@ -23,7 +23,8 @@ const routes = [
         name: 'Home',
         component: Home,
         meta: {
-          keepAlive: true
+          keepAlive: true,
+          showBar: true
         }
 
       },
@@ -32,9 +33,17 @@ const routes = [
         name: 'User',
         component: User,
         meta: {
-          keepAlive: true
+          keepAlive: true,
+          showBar: true
         }
-
+      },
+      {
+        path: '/songList/:id',
+        name: 'Recommended',
+        component: SongList,
+        meta: {
+          showBar: false
+        }
       }
     ]
   },
@@ -42,11 +51,6 @@ const routes = [
     path: '/detail/:id',
     name: 'Detail',
     component: Detail
-  },
-  {
-    path: '/songList/:id',
-    name: 'Recommended',
-    component: SongList
   },
   {
     path: '/login',

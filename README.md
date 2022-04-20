@@ -13,3 +13,5 @@ const loading = this.$toast.loading({
       forbidClick: true
     })
 ```
+vuex提交 
+this.$store.commit('changeMusicUrl',musicUrl)

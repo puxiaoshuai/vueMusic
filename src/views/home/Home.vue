@@ -49,7 +49,7 @@ export default {
     request({
       url: getRecommends
     }).then(res => {
-      // this.recommendedList = res.result
+      this.recommendedList = res.result
     })
   }
 }

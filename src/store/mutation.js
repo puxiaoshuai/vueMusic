@@ -8,7 +8,7 @@ const mutations = {
   changeCurrentTime(state, time) {
     state.globalCurrentTime = time
   },
-  changeMusicStatus(state, status) {
+  handleMusicPause(state, status) {
     state.isMusicPaused = status
   },
   changeMusicQueue(state, obj) {
