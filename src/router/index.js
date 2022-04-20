@@ -7,7 +7,7 @@ import Detail from '@/views/home/NewsDetail.vue'
 import Login from '@/views/login/LoginView.vue'
 import SongList from '@/views/music_detail/SongList.vue'
 import PageNotFound from '@/components/PageNotFound.vue'
-// import MusicDetail from '@/views/music_detail/Player.vue'
+import SongLRC from '@/views/music_detail/Player.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -42,7 +42,8 @@ const routes = [
         name: 'Recommended',
         component: SongList,
         meta: {
-          showBar: false
+          showBar: false,
+          keepAlive: true
         }
       }
     ]
@@ -51,6 +52,11 @@ const routes = [
     path: '/detail/:id',
     name: 'Detail',
     component: Detail
+  },
+  {
+    path: '/songLrc/:id',
+    name: 'SongLRC',
+    component: SongLRC
   },
   {
     path: '/login',

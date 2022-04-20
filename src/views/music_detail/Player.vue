@@ -2,18 +2,16 @@
   <div class="mb-14">
     <van-nav-bar title="音乐标题" left-text="返回" left-arrow @click-left="onClickLeft" />
 
-    <div class="cove flex">
+    <div class="cover flex">
       <van-image class="rounded-2xl w-40 h-40 m-auto" round src="https://p1.music.126.net/cpoUinrExafBHL5Nv5iDHQ==/109951166361218466.jpg" />
     </div>
     <LRC :id="1938028979" :currentTime="currentTime"></LRC>
     <div class="audio-wapper flex">
-      <audio ref="player" class="m-auto mt-8" controls :src="mp3Info.url"></audio>
+      <audio ref="player" class="m-auto mt-8" controls :src="mp3Url"></audio>
     </div>
   </div>
 </template>
 <script>
-import { request } from '@/utils/request.js'
-import { mp3Url } from '@/utils/api.js'
 import LRC from './LRC.vue'
 export default {
   name: 'musciDetail',
@@ -22,22 +20,12 @@ export default {
   },
   data() {
     return {
-      mp3Info: {
-        url: '',
-        cover: ''
-      },
-      currentTime: 0
+      currentTime: 0,
+      mp3Url: ''
     }
   },
   mounted() {
-    request({
-      url: mp3Url
-    }).then(res => {
-      if (res.data && res.data.length > 0) {
-        this.mp3Info = { url: res.data[0].url, cover: res.data[0].url }
-        console.log('gg', this.mp3Info.url)
-      }
-    })
+    console.log(this.$route)
     this.addEventHandle()
   },
   beforeDestroy() {

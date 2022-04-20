@@ -6,7 +6,6 @@
  * https://wy-musciapi.vercel.app/song/url?id=1938028979  MP3url
  * https://wy-musciapi.vercel.app/song/detail?ids=1938028979 获取歌曲详情
  */
-export const mp3Url = '/song/url?id=33894312'
 export const getLrc = '/lyric?id=33894312'
 export const getBanners = '/banner?type=2'
 export const getRecommends = '/personalized?limit='

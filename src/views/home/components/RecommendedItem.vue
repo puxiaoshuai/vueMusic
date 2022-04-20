@@ -7,7 +7,7 @@
     </div>
     <div class="icon-number absolute right-1 top-0 bg-slate-400 text-xs rounded px-1 mt-1 bg-opacity-80 text-white">
       <van-icon name="service" class="mr-1" />
-      {{ playCount }}
+      {{ playCount | formatNumber }}
     </div>
   </div>
 </template>
@@ -42,12 +42,11 @@ export default {
     }
   },
   filters: {
-    // formatNumber: function (value) {
-    //   //const w = 10000
-    //   if (!value) return ''
-    //   // if(value > w * 10000){
-    //   // }
-    // }
+    formatNumber: function(value) {
+      const w = 10000
+      if (!value) return ''
+      return (value / w).toFixed(2) + '万'
+    }
   }
 }
 </script>

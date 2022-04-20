@@ -15,3 +15,5 @@ const loading = this.$toast.loading({
 ```
 vuex提交 
 this.$store.commit('changeMusicUrl',musicUrl)
+
+5.动画循环参考 bottomPlayer.vue

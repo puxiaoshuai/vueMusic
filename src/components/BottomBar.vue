@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div class="container">
+    <div class="container" v-bind:style="{ marginBottom: contentSpace + 'px' }">
       <keep-alive>
         <router-view v-if="$route.meta.keepAlive"></router-view>
       </keep-alive>
@@ -35,16 +35,12 @@ export default {
     bottomSpace() {
       // 控制播放组件的位置
       return this.$route.meta.showBar ? 0 : -50
+    },
+    contentSpace() {
+      return this.$route.meta.showBar ? 110 : 64
     }
   },
   mounted() {}
 }
 </script>
-<style lang="less">
-.container {
-  margin-bottom: 106px;
-}
-.playerContainer {
-  bottom: -50px;
-}
-</style>
+<style lang="less"></style>

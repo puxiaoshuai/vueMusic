@@ -14,9 +14,7 @@
       </div>
     </div>
     <div class="songlist">
-      <van-list v-model="loading" :finished="finished" finished-text="--底线(๑¯㉨¯๑)--">
-        <SongItem :name="item.name" :id="item.id" :picUrl="item.picUrl" :author="item.author" :mv="item.mv" :dt="item.dt" :key="item.id" v-for="item in songList"></SongItem>
-      </van-list>
+      <SongItem :name="item.name" :id="item.id" :picUrl="item.picUrl" :author="item.author" :mv="item.mv" :dt="item.dt" :key="item.id" v-for="item in songList"></SongItem>
     </div>
   </div>
 </template>
