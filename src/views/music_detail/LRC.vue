@@ -24,10 +24,11 @@ export default {
     }
   },
   mounted() {
+    console.log('mounted', getLrc + this.id)
     request({
       url: getLrc + this.id
     }).then(res => {
-      this.filterLrc(res.lrc.lyric)
+      this.filterLrc('res?.lrc?.lyric')
     })
   },
 
@@ -60,11 +61,13 @@ export default {
   },
   props: {
     id: {
-      type: [String, Number],
+      type: Number,
       required: true
-    },
-    currentTime: {
-      type: Number
+    }
+  },
+  computed: {
+    currentTime() {
+      return this.$store.state.globalCurrentTime
     }
   }
 }

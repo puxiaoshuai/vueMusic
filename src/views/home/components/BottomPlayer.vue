@@ -64,7 +64,7 @@ export default {
       return this.$store.state.nowIndex
     },
     currentTime() {
-      return Math.floor((this.$store.state.globalCurrentTime / (this.globalMusicInfo.dt / 1000)) * 100) // 进度条适配
+      return Math.floor((this.$store.state.globalCurrentTime / (this.globalMusicInfo.dt / 1000)) * 100) || 0 // 进度条适配
     },
     isMusicPaused() {
       return this.$store.state.isMusicPaused

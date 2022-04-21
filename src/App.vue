@@ -27,11 +27,11 @@ export default {
       this.duration = e.target.duration
     },
     timeupdate(e) {
-      // this.currentTime = Math.floor((e.target.currentTime / (this.globalMusicInfo.dt / 1000)) * 100) // 进度条适配
       this.$store.commit('changeCurrentTime', e.target.currentTime)
     },
     onEnded() {
       this.$store.commit('handleMusicPause', true)
+      console.log('播放完毕啦')
     }
   },
   computed: {

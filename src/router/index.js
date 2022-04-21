@@ -43,7 +43,7 @@ const routes = [
         component: SongList,
         meta: {
           showBar: false,
-          keepAlive: true
+          keepAlive: false
         }
       }
     ]
