@@ -1,7 +1,7 @@
 <!-- 推荐歌单 -->
 <template>
   <div @click="jumpToSongList(id)" class="w-24 relative">
-    <van-image :src="picUrl" />
+    <van-image class="w-24 h-24" :src="picUrl" />
     <div>
       <TextView :text="name" />
     </div>

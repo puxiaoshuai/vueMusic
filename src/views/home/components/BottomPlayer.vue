@@ -1,16 +1,5 @@
 <template>
   <div>
-    <audio
-      :src="globalMusicUrl"
-      controls
-      autoplay
-      ref="audio"
-      style="display: none"
-      @canplay="getDuration"
-      @timeupdate="timeupdate"
-      @ended="onEnded"
-      您的浏览器不支持audio标签
-    ></audio>
     <van-progress stroke-width="2" :percentage="currentTime" pivot-text="" />
     <div class="h-14 w-full flex bg-white items-center">
       <div class="imageHeader h-12 w-12 border-2 rounded-full border-red-300 ml-4">
@@ -30,14 +19,13 @@
   </div>
 </template>
 <script>
+import { PLAYING_MUSIC_INFO } from '@/utils/constants.js'
 export default {
   name: 'BottomPlayer',
   components: {},
   data() {
     return {
       showModal: false,
-      currentTime: 0,
-      duration: 0,
       defaultImg: require('@/assets/defaultImg.png')
     }
   },
@@ -45,18 +33,7 @@ export default {
     showPopup() {
       this.$store.commit('handleShowPopup')
     },
-    getDuration(e) {
-      this.duration = e.target.duration
-      console.log('进度', this.duration)
-      this.$store.commit('changeCurrentTime', e.target.currentTime)
-    },
-    timeupdate(e) {
-      this.currentTime = (e.target.currentTime / this.duration) * 100 // 进度条适配
-      this.$store.commit('changeCurrentTime', e.target.currentTime)
-    },
-    onEnded() {
-      this.$store.commit('handleMusicPause', true)
-    },
+
     handlePlay() {
       if (this.globalMusicUrl === '') {
         this.$toast('选首喜欢的歌曲吧')
@@ -69,7 +46,8 @@ export default {
     },
     toLRC() {
       if (this.globalMusicUrl === '') return
-      this.$router.push({ name: 'SongLRC', params: { url: this.globalMusicUrl, id: this.globalMusicInfo.id } })
+      localStorage.setItem(PLAYING_MUSIC_INFO, JSON.stringify(this.globalMusicInfo))
+      this.$router.push({ name: 'SongLRC', params: { id: this.globalMusicInfo.id } })
     }
   },
   computed: {
@@ -85,6 +63,9 @@ export default {
     nowIndex() {
       return this.$store.state.nowIndex
     },
+    currentTime() {
+      return Math.floor((this.$store.state.globalCurrentTime / (this.globalMusicInfo.dt / 1000)) * 100) // 进度条适配
+    },
     isMusicPaused() {
       return this.$store.state.isMusicPaused
     },
@@ -95,9 +76,9 @@ export default {
   watch: {
     isMusicPaused() {
       if (this.isMusicPaused) {
-        this.$refs.audio.pause()
+        this.$parent.$parent.$refs.audio.pause()
       } else {
-        this.$refs.audio.play()
+        this.$parent.$parent.$refs.audio.play()
       }
     }
   }

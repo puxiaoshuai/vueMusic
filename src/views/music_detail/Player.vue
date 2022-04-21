@@ -1,42 +1,41 @@
 <template>
   <div class="mb-14">
-    <van-nav-bar title="音乐标题" left-text="返回" left-arrow @click-left="onClickLeft" />
+    <van-nav-bar :title="musicInfo.name" left-text="返回" left-arrow @click-left="onClickLeft" />
 
     <div class="cover flex">
-      <van-image class="rounded-2xl w-40 h-40 m-auto" round src="https://p1.music.126.net/cpoUinrExafBHL5Nv5iDHQ==/109951166361218466.jpg" />
+      <van-image class="rounded-2xl w-40 h-40 m-auto" round :src="musicInfo.picUrl" />
     </div>
-    <LRC :id="1938028979" :currentTime="currentTime"></LRC>
-    <div class="audio-wapper flex">
-      <audio ref="player" class="m-auto mt-8" controls :src="mp3Url"></audio>
-    </div>
+    <LRC :id="id" :currentTime="globalCurrentTime"></LRC>
   </div>
 </template>
 <script>
 import LRC from './LRC.vue'
+import { PLAYING_MUSIC_INFO } from '@/utils/constants.js'
 export default {
-  name: 'musciDetail',
+  name: 'musicDetail',
   components: {
     LRC: LRC
   },
   data() {
     return {
       currentTime: 0,
-      mp3Url: ''
+      musicInfo: {},
+      id: 0
     }
   },
   mounted() {
-    console.log(this.$route)
-    this.addEventHandle()
+    this.musicInfo = JSON.parse(localStorage.getItem(PLAYING_MUSIC_INFO))
+    this.id = this.$route.params.id
   },
-  beforeDestroy() {
-    this.$refs.player.removeEventListener('timeupdate', event => {})
+  beforeDestroy() {},
+  computed: {
+    globalCurrentTime() {
+      return this.$store.state.globalCurrentTime
+    }
   },
   methods: {
-    onClickLeft() {},
-    addEventHandle() {
-      this.$refs.player.addEventListener('timeupdate', event => {
-        this.currentTime = this.$refs.player.currentTime
-      })
+    onClickLeft() {
+      this.$router.back()
     }
   }
 }

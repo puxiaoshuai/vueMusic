@@ -53,7 +53,7 @@ export default {
           if (res.data.length > 0) {
             this.$store.commit('changeMusicUrl', res.data[0].url)
             // this.$store.commit('changeMusicQueue',musicList)
-            this.$store.commit('changeMusicInfo', { name: this.name, author: this.author, picUrl: this.picUrl, id: this.id })
+            this.$store.commit('changeMusicInfo', { name: this.name, author: this.author, picUrl: this.picUrl, id: this.id, dt: this.dt })
             this.$store.commit('handleMusicPause', false)
             this.loadingContent.clear()
           }

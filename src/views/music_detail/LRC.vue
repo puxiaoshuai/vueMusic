@@ -25,7 +25,7 @@ export default {
   },
   mounted() {
     request({
-      url: getLrc
+      url: getLrc + this.id
     }).then(res => {
       this.filterLrc(res.lrc.lyric)
     })
