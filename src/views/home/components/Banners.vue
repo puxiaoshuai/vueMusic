@@ -21,7 +21,7 @@ export default {
     request({
       url: getBanners
     }).then(res => {
-      // this.banners = res.banners
+      this.banners = res.banners
     })
   }
 }

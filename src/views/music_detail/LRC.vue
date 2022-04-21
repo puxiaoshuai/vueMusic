@@ -1,14 +1,14 @@
 <template>
   <div class="lrc-wrapper h-80 rounded-lg overflow-auto relative">
-    <div class="lrc absolute top-0" ref="lrc">
-      <p
+    <div class="lrc absolute top-0 w-full" ref="lrc">
+      <div
         :class="{ 'text-red-600': currentTime > allKeys[index] && currentTime < allKeys[index + 1] }"
-        class="h-8 leading-8"
+        class="h-8 leading-8 text-center"
         v-for="(item, key, index) in lrcInfo"
         :key="index"
       >
-        <span>{{ item }}{{ scrollLrc(index) }}</span>
-      </p>
+        <div>{{ item }}{{ scrollLrc(index) }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -19,16 +19,15 @@ export default {
   name: 'LRC',
   data() {
     return {
-      lrcInfo: '',
+      lrcInfo: {},
       allKeys: []
     }
   },
   mounted() {
-    console.log('mounted', getLrc + this.id)
     request({
       url: getLrc + this.id
     }).then(res => {
-      this.filterLrc('res?.lrc?.lyric')
+      this.filterLrc(res?.lrc?.lyric)
     })
   },
 
@@ -47,21 +46,22 @@ export default {
         const min = parseInt(t.match(/\[(\d*):/i)[1])
         const sec = parseInt(t.match(/:\d*/i).toString().slice(1))
         const timerNumber = min * 60 + sec
+
         lrcObj[timerNumber] = content
         this.allKeys.push(timerNumber)
       }
       this.lrcInfo = lrcObj
+      console.log(this.lrcInfo)
     },
     scrollLrc(index) {
       if (this.currentTime > this.allKeys[index] && this.currentTime < this.allKeys[index + 1]) {
-        if (index - 2 < 0) return
-        this.$refs.lrc.style.top = -(32 * (index - 2)) + 'px'
+        this.$refs.lrc.style.top = -(32 * (index - 6)) + 'px'
       }
     }
   },
   props: {
     id: {
-      type: Number,
+      type: [String, Number],
       required: true
     }
   },

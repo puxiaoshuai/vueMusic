@@ -2,7 +2,7 @@
   <div class="mb-14">
     <van-nav-bar :title="musicInfo.name" left-text="返回" left-arrow @click-left="onClickLeft" />
     <div class="cover flex">
-      <van-image class="rounded-2xl w-40 h-40 m-auto" round :src="musicInfo.picUrl" />
+      <van-image class="rounded-2xl w-40 h-40 m-auto mt-5" round :src="musicInfo.picUrl" />
     </div>
     <LRC :id="id"></LRC>
   </div>
